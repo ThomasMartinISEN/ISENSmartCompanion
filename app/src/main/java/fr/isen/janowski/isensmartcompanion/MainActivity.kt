@@ -1,5 +1,6 @@
 package fr.isen.janowski.isensmartcompanion
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.widget.ImageButton
@@ -54,6 +55,7 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import fr.isen.janowski.isensmartcompanion.models.EventModel
 import fr.isen.janowski.isensmartcompanion.screens.EventsScreen
 import fr.isen.janowski.isensmartcompanion.screens.HistoryScreen
 import fr.isen.janowski.isensmartcompanion.screens.MainScreen
@@ -70,6 +72,7 @@ data class TabBarItem(
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        Log.d("lifecycle", "MainActivity onCreate")
         enableEdgeToEdge()
         setContent {
             val homeTab = TabBarItem(title = getString(R.string.bottom_navbar_home), selectedIcon = Icons.Filled.Home, unselectedIcon = Icons.Outlined.Home)
@@ -93,7 +96,12 @@ class MainActivity : ComponentActivity() {
                               MainScreen(innerPadding)
                           }
                           composable(eventsTab.title) {
-                              EventsScreen(innerPadding)
+                              EventsScreen(
+                                  innerPadding = innerPadding,
+                                  eventHandler = { event ->
+                                      startEventDetailActivity(event)
+                                  }
+                              )
                           }
                           composable(historyTab.title) {
                               HistoryScreen(innerPadding)
@@ -103,5 +111,37 @@ class MainActivity : ComponentActivity() {
                 }
             }
         }
+    }
+
+    fun startEventDetailActivity(event: EventModel) {
+        val intent = Intent(this, EventDetailActivity::class.java).apply {
+            putExtra(EventDetailActivity.eventExtraKey, event)
+        }
+        startActivity(intent)
+    }
+
+    override fun onRestart() {
+        super.onRestart()
+        Log.d("lifecycle", "MainActivity onRestart")
+    }
+
+    override fun onResume() {
+        super.onResume()
+        Log.d("lifecycle", "MainActivity onResume")
+    }
+
+    override fun onStop() {
+        Log.d("lifecycle", "MainActivity onStop")
+        super.onStop()
+    }
+
+    override fun onPause() {
+        Log.d("lifecycle", "MainActivity onPause")
+        super.onPause()
+    }
+
+    override fun onDestroy() {
+        Log.d("lifecycle", "MainActivity onDestroy")
+        super.onDestroy()
     }
 }
