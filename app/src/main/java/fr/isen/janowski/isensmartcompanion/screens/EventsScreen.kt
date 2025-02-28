@@ -28,7 +28,42 @@ fun EventsScreen(innerPadding: PaddingValues, eventHandler: (EventModel) -> Unit
         val events = EventModel.fakeEvents()
         LazyColumn {
             items(events) { event ->
-                EventRow(event, eventHandler)
+                EventRow(event,
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                    eventHandler)
             }
         }
     }

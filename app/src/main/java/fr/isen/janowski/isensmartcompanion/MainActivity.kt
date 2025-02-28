@@ -55,12 +55,16 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import fr.isen.janowski.isensmartcompanion.api.NetworkManager
 import fr.isen.janowski.isensmartcompanion.models.EventModel
 import fr.isen.janowski.isensmartcompanion.screens.EventsScreen
 import fr.isen.janowski.isensmartcompanion.screens.HistoryScreen
 import fr.isen.janowski.isensmartcompanion.screens.MainScreen
 import fr.isen.janowski.isensmartcompanion.screens.TabView
 import fr.isen.janowski.isensmartcompanion.ui.theme.ISENSmartCompanionTheme
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 data class TabBarItem(
     val title: String,
@@ -72,6 +76,7 @@ data class TabBarItem(
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        fetchEvents()
         Log.d("lifecycle", "MainActivity onCreate")
         enableEdgeToEdge()
         setContent {
@@ -111,6 +116,21 @@ class MainActivity : ComponentActivity() {
                 }
             }
         }
+    }
+
+    fun fetchEvents() {
+        val call = NetworkManager.api.getEvents()
+        call.enqueue(object : Callback<List<EventModel>> {
+            override fun onResponse(p0: Call<List<EventModel>>, p1: Response<List<EventModel>>) {
+                p1.body()?.forEach {
+                    Log.d("request", "event : ${it.title}")
+                }
+            }
+
+            override fun onFailure(p0: Call<List<EventModel>>, p1: Throwable) {
+                Log.e("request", p1.message ?: "request failed")
+            }
+        })
     }
 
     fun startEventDetailActivity(event: EventModel) {
