@@ -1,6 +1,6 @@
-package fr.isen.janowski.isensmartcompanion.api
+package fr.isen.martin.isensmartcompanion.api
 
-import fr.isen.janowski.isensmartcompanion.models.EventModel
+import fr.isen.martin.isensmartcompanion.models.EventModel
 import retrofit2.Call
 import retrofit2.http.GET
 

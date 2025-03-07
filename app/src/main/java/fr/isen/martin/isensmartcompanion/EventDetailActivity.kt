@@ -1,4 +1,4 @@
-package fr.isen.janowski.isensmartcompanion
+package fr.isen.martin.isensmartcompanion
 
 import android.os.Bundle
 import android.util.Log
@@ -15,8 +15,8 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import fr.isen.janowski.isensmartcompanion.models.EventModel
-import fr.isen.janowski.isensmartcompanion.ui.theme.ISENSmartCompanionTheme
+import fr.isen.martin.isensmartcompanion.models.EventModel
+import fr.isen.martin.isensmartcompanion.ui.theme.ISENSmartCompanionTheme
 
 class EventDetailActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {

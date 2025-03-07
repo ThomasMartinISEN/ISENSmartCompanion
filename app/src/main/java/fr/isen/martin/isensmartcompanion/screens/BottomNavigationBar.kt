@@ -1,4 +1,4 @@
-package fr.isen.janowski.isensmartcompanion.screens
+package fr.isen.martin.isensmartcompanion.screens
 
 import androidx.compose.material3.Icon
 import androidx.compose.material3.NavigationBar
@@ -11,7 +11,7 @@ import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.navigation.NavController
-import fr.isen.janowski.isensmartcompanion.TabBarItem
+import fr.isen.martin.isensmartcompanion.TabBarItem
 
 @Composable
 fun TabView(tabBarItems: List<TabBarItem>, navController: NavController) {

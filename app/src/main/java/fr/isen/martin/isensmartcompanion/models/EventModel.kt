@@ -1,4 +1,4 @@
-package fr.isen.janowski.isensmartcompanion.models
+package fr.isen.martin.isensmartcompanion.models
 
 import java.io.Serializable
 

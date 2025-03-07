@@ -4,7 +4,7 @@
     "type": "APK",
     "kind": "Directory"
   },
-  "applicationId": "fr.isen.janowski.isensmartcompanion",
+  "applicationId": "fr.isen.martin.isensmartcompanion",
   "variantName": "release",
   "elements": [
     {
